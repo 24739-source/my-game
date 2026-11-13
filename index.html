@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คำถามเล็กๆ 💗</title>
+<style>
+body {
+  background: #fff0f5;
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+.card {
+  background: white;
+  padding: 35px 25px;
+  border-radius: 25px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 8px 25px #e8b5c8;
+}
+h2 { color: #e879a8; }
+input {
+  width: 90%;
+  padding: 13px;
+  border: 2px solid #f3b6cf;
+  border-radius: 12px;
+  font-size: 16px;
+  outline: none;
+}
+button {
+  margin-top: 20px;
+  padding: 12px 35px;
+  background: #ed8db5;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+button:hover { background: #df6f9e; }
+#step { color: #aaa; }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <p id="step">คำถามที่ 1</p>
+  <h2 id="question">เทอชอบกินอะไรที่สุด 💗</h2>
+  <input id="answer" type="text"
+         placeholder="พิมพ์คำตอบตรงนี้...">
+  <br>
+  <button onclick="nextStep()">ถัดไป →</button>
+</div>
+
+<script>
+const questions = [
+  "เทอชอบกินอะไรที่สุด 💗",
+  "เทอชอบสีรายยย",
+  "",
+  "คำถามที่ 4",
+  "คำถามที่ 5"
+];
+
+let current = 0;
+let answers = [];
+
+function nextStep() {
+  const answer = document.getElementById("answer").value.trim();
+
+  if (!answer) {
+    alert("อย่าลืมตอบคำถามก่อนนะ 💗");
+    return;
+  }
+
+  answers.push(answer);
+  current++;
+
+  if (current < questions.length) {
+    document.getElementById("step").innerText =
+      "คำถามที่ " + (current + 1);
+
+    document.getElementById("question").innerText =
+      questions[current];
+
+    document.getElementById("answer").value = "";
+  } else {
+    document.querySelector(".card").innerHTML =
+      "<h2>ขอบคุณที่ตอบนะ 💗</h2>" +
+      "<p>ตอบครบทุกข้อแล้ว!</p>";
+  }
+}
+</script>
+
+</body>
+</html>
